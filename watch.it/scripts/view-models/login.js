@@ -48,7 +48,7 @@ app.Login = (function () {
 
         var show = function () {
             if (app.currentUser.data != null) {
-                app.mobileApp.navigate('views/welcome.html');
+                app.mobileApp.navigate('views/add.html');
             } else {
                 $loginUsername.val('');
                 $loginPassword.val('');
@@ -70,7 +70,7 @@ app.Login = (function () {
                 app.currentUser.set('data', data.result);
             })
             .then(function () {
-                app.mobileApp.navigate('views/welcome.html');
+                app.mobileApp.navigate('views/add.html');
             })
             .then(null,
                   function (err) {
