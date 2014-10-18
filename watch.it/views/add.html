@@ -5,11 +5,10 @@
             <a data-role="button" class="btn btn-logout">Logout</a>
         </div>
     </div>
-    
 
-        
-    <div data-role="tabstrip" class="top-tabstrip">
-      
+            <select data-template="selectCategoryTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: categoryOptions"></select>
+
+    <div data-role="tabstrip" class="top-tabstrip"> 
         <div data-role="touch" data-bind="events: { tap: addPhoto }">
             <a data-role="button" data-icon="camera" id="add-photo">Add Photo</a>
         </div>
@@ -31,7 +30,7 @@
 <!-- end of main-layout-->
 
 
-<script type="text/x-kendo-template" id="chooseTemplate">       
+<script type="text/x-kendo-template" id="selectCategoryTemplate">       
     <option value=" #: id #">
         #: name #
     </option>

@@ -28,13 +28,6 @@ app.Add = (function () {
             }, 'Exit', ['OK', 'Cancel']);
         };
 
-        return {
-            show: show,
-            logout: logout
-        };
-        
-
-
         var isLocationValidSite = function (location) {
             var dist = 0.01;
             var result;
@@ -127,11 +120,13 @@ app.Add = (function () {
             }
         };
         
-        var imagesOptions = [{ id: 1, name: 'All' }, { id: 2, name: 'My sites' }];
+        var categoryOptions = [{ id: 1, name: 'Asphalt' }, { id: 2, name: 'Buildings' }];
 
         return {
+            show: show,
+            logout: logout,
             addPhoto: addPhoto,
-            categoryOptions: imagesOptions
+            categoryOptions: categoryOptions
         };
 
     }());

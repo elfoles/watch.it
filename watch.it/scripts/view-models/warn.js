@@ -8,7 +8,6 @@ app.Warn = (function () {
     'use strict';
 
     var warnViewModel = (function () {
-
                 
         var show = function () {
             $('#user-greeting-warn').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
@@ -29,6 +28,8 @@ app.Warn = (function () {
 
             }, 'Exit', ['OK', 'Cancel']);
         };
+        
+        
 
         return {
             show: show,
