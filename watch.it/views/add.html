@@ -6,14 +6,21 @@
         </div>
     </div>
 
-            <select data-template="selectCategoryTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: categoryOptions"></select>
-
-    <div data-role="tabstrip" class="top-tabstrip"> 
-        <div data-role="touch" data-bind="events: { tap: addPhoto }">
-            <a data-role="button" data-icon="camera" id="add-photo">Add Photo</a>
-        </div>
+    <div data-role="touch" data-bind="events: { tap: addPhoto }" >
+        <a data-role="button" class="btn" style="display: block; width: 90%; text-align:center; margin:5%" data-icon="camera" id="add-photo">Add Photo</a>
     </div>
+
+
+    <select data-template="selectCategoryTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: categoryOptions"></select>
+    <select data-template="selectTransportationTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: transportationOptions"></select>
+
+    <input type="text" value="Details" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em"/>
+
     
+    <div data-role="touch" data-bind="events: { tap: reportIssue }">
+        <a data-role="button" class="btn" style="display: block; width: 90%; text-align:center; margin:5%" data-icon="action" id="report">Report issue</a>
+    </div>
+
    
 </div>
 
@@ -29,8 +36,13 @@
 </div>
 <!-- end of main-layout-->
 
-
 <script type="text/x-kendo-template" id="selectCategoryTemplate">       
+    <option value=" #: id #">
+        #: name #
+    </option>
+</script>
+
+<script type="text/x-kendo-template" id="selectTransportationTemplate">       
     <option value=" #: id #">
         #: name #
     </option>

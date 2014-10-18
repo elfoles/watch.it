@@ -122,11 +122,14 @@ app.Add = (function () {
         
         var categoryOptions = [{ id: 1, name: 'Asphalt' }, { id: 2, name: 'Buildings' }];
 
+        var transportationOptions = [{ id: 1, name: 'Pedestrian' }, { id: 2, name: 'Cyclist' }, { id: 3, name: 'Motor-Cyclist' }, { id: 4, name: 'Driver' }];
+
         return {
             show: show,
             logout: logout,
             addPhoto: addPhoto,
-            categoryOptions: categoryOptions
+            categoryOptions: categoryOptions,
+            transportationOptions : transportationOptions
         };
 
     }());
