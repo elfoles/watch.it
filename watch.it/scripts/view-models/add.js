@@ -126,10 +126,12 @@ app.Add = (function () {
                 }
             }
         };
+        
+        var imagesOptions = [{ id: 1, name: 'All' }, { id: 2, name: 'My sites' }];
 
         return {
             addPhoto: addPhoto,
-            imagesOptions: imagesOptions
+            categoryOptions: imagesOptions
         };
 
     }());

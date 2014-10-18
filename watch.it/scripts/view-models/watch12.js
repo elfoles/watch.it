@@ -1,14 +1,14 @@
 /**
- * Signup view model
+ * Watch view model
  */
 var app = app || {};
 
 app.Watch = (function () {
     'use strict';
-    
-    var watchViewModel = (function () {
-        'use strict';
-        
+
+    var issueViewModel = (function () {
+        'use strict';        
+                
         var show = function () {
             $('#user-greeting-watch').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
         };
@@ -29,7 +29,10 @@ app.Watch = (function () {
             }, 'Exit', ['OK', 'Cancel']);
         };
 
-        var imagesOptions = [{ id: 1, name: 'All' }, { id: 2, name: 'My sites' }];
+        return {
+            show: show,
+            logout: logout
+        };
 
         var imagesDataList = [];
 
@@ -47,6 +50,10 @@ app.Watch = (function () {
                 });
         }());
         
+        var init = function () {
+
+        };
+
         var selectionImagesList = function (event) {
             var selectedValue = parseInt(event.target.value),
                 template = kendo.template($("#imagesTemplate").html()),
@@ -75,15 +82,13 @@ app.Watch = (function () {
         }
 
         return {
-            show: show,
-            logout: logout,
+            init: init,
             selectionImagesList: selectionImagesList,
-            imagesOptions: imagesOptions,
             imagesDataList: imagesDataList
         };
 
     }());
 
-    return watchViewModel;
+    return issueViewModel;
 
 }());
