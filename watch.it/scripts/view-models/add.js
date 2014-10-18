@@ -7,8 +7,9 @@ app.Add = (function () {
 
     var addViewModel = (function () {
         
+        
         var show = function () {
-            $('#user-greeting').text('Welcome, ' + app.currentUser.data.DisplayName);
+            $('#user-greeting').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
         };
 
         var logout = function () {
@@ -31,6 +32,8 @@ app.Add = (function () {
             show: show,
             logout: logout
         };
+        
+
 
         var isLocationValidSite = function (location) {
             var dist = 0.01;
@@ -125,7 +128,8 @@ app.Add = (function () {
         };
 
         return {
-            addPhoto: addPhoto
+            addPhoto: addPhoto,
+            imagesOptions: imagesOptions
         };
 
     }());

@@ -1,5 +1,14 @@
 <div data-role="view" data-title="Add" data-layout="main-layout" data-model="app.Add" data-show="app.Add.show">
-        <div data-role="tabstrip" class="top-tabstrip">
+    <div data-role="header">        
+        <div id="logout" data-role="touch" data-bind="events: { tap: logout }">           
+            <h3 style="display:inline-block" class="center-block" id="user-greeting"></h3>     
+            <a data-role="button" class="btn btn-logout">Logout</a>
+        </div>
+    </div>
+
+        
+    <div data-role="tabstrip" class="top-tabstrip">
+      
         <div data-role="touch" data-bind="events: { tap: addPhoto }">
             <a data-role="button" data-icon="camera" id="add-photo">Add Photo</a>
         </div>
@@ -9,13 +18,6 @@
 
 <!-- main-layout-->
 <div data-role="layout" data-id="main-layout">
-    <div data-role="header">        
-        <div id="logout" data-role="touch" data-bind="events: { tap: logout }">           
-            <h3 style="display:inline-block" class="center-block" id="user-greeting"></h3>     
-            <a data-role="button" class="btn btn-logout">Logout</a>
-        </div>
-    </div>   
-    
     <div data-role="footer">
         <div data-role="tabstrip">
             <a href="views/add.html" data-icon="add">Add</a>
@@ -26,6 +28,13 @@
     </div>
 </div>
 <!-- end of main-layout-->
+
+
+<script type="text/x-kendo-template" id="chooseTemplate">       
+    <option value=" #: id #">
+        #: name #
+    </option>
+</script>
 
 <script type="text/x-kendo-template" id="contactsTemplate">
     <a data-bind="click: alert">#: data.id# - #: data.name# </a>

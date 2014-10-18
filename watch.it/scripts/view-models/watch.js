@@ -7,9 +7,32 @@ app.Watch = (function () {
     'use strict';
 
     var issueViewModel = (function () {
-        'use strict';
+        'use strict';        
+                
+        var show = function () {
+            $('#user-greeting-watch').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
+        };
 
-        var imagesOptions = [{ id: 1, name: 'All' }, { id: 2, name: 'My sites' }];
+        var logout = function () {
+            navigator.notification.confirm('Do you really want to exit?', function (confirmed) {
+                
+                if (confirmed === true || confirmed === 1) {
+                    app.currentUser = kendo.observable({ data: null });
+                    app.helper.logout();
+                    app.mobileApp.navigate('views/login.html');
+                };
+
+                var exit = function () {
+                    navigator.app.exitApp();
+                };
+
+            }, 'Exit', ['OK', 'Cancel']);
+        };
+
+        return {
+            show: show,
+            logout: logout
+        };
 
         var imagesDataList = [];
 
@@ -61,7 +84,6 @@ app.Watch = (function () {
         return {
             init: init,
             selectionImagesList: selectionImagesList,
-            imagesOptions: imagesOptions,
             imagesDataList: imagesDataList
         };
 

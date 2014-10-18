@@ -1,4 +1,11 @@
 <div data-role="view" data-title="Watch" data-layout="main-layout" data-model="app.Watch" data-show="app.Watch.show" data-init="app.Watch.init">
+    <div data-role="header">        
+        <div id="logout" data-role="touch" data-bind="events: { tap: logout }">           
+            <h3 style="display:inline-block" class="center-block" id="user-greeting-watch"></h3>     
+            <a data-role="button" class="btn btn-logout">Logout</a>
+        </div>
+    </div>
+    
     <ul data-template="imagesTemplate" data-role="listview" data-bind="source: imagesDataList" id="imagesList"></ul>
 </div>
 
