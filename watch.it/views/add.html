@@ -7,6 +7,7 @@
     <ul data-role="listview" data-style="inset" data-template="contactsTemplate" data-bind="source: ds"></ul>
 </div>
 
+<!-- main-layout-->
 <div data-role="layout" data-id="main-layout">
     <div data-role="header">        
         <div id="logout" data-role="touch" data-bind="events: { tap: logout }">           
@@ -17,13 +18,14 @@
     
     <div data-role="footer">
         <div data-role="tabstrip">
-            <a href="views/add.html" data-icon="home">Add</a>
-            <a href="views/watch.html" data-icon="add">Watch</a>
-            <a href="views/warn.html" data-icon="gallery">Warn</a>
+            <a href="views/add.html" data-icon="add">Add</a>
+            <a href="views/watch.html" data-icon="search">Watch</a>
+            <a href="views/warn.html" data-icon="about">Warn</a>
         </div>
         <p>&copy; <span data-bind="text: getYear"></span> ENIGMA</p>
     </div>
 </div>
+<!-- end of main-layout-->
 
 <script type="text/x-kendo-template" id="contactsTemplate">
     <a data-bind="click: alert">#: data.id# - #: data.name# </a>
