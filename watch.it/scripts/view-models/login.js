@@ -1,15 +1,15 @@
 /**
  * Login view model
  */
+/* global kendo, window */
 
 var app = app || {};
+app.viewmodels = app.viewmodels || {};
 
 app.Login = (function () {
     'use strict';
 
     var loginViewModel = (function () {
-
-        var isInMistSimulator = (location.host.indexOf('icenium.com') > -1);
 
         var $loginUsername;
         var $loginPassword;
@@ -18,7 +18,6 @@ app.Login = (function () {
         var isGoogleLogin = app.isKeySet(appSettings.google.clientId) && app.isKeySet(appSettings.google.redirectUri);
         var isLiveIdLogin = app.isKeySet(appSettings.liveId.clientId) && app.isKeySet(appSettings.liveId.redirectUri);
         var isAdfsLogin = app.isKeySet(appSettings.adfs.adfsRealm) && app.isKeySet(appSettings.adfs.adfsEndpoint);
-       // var isAnalytics = analytics.isAnalytics();
 
         var init = function () {
 
@@ -45,14 +44,15 @@ app.Login = (function () {
                 $('#loginWithADSF').addClass('disabled');
                 console.log('ADFS Realm and/or Endpoint not set. You cannot use ADFS login.');
             }
-            if (!isAnalytics) {
-                console.log('EQATEC product key is not set. You cannot use EQATEC Analytics service.');
-            }
         };
 
         var show = function () {
-            $loginUsername.val('');
-            $loginPassword.val('');
+            if (app.currentUser.data != null) {
+                app.mobileApp.navigate('views/welcome.html');
+            } else {
+                $loginUsername.val('');
+                $loginPassword.val('');
+            }
         };
 
         // Authenticate to use Backend Services as a particular user
@@ -64,16 +64,13 @@ app.Login = (function () {
             // Authenticate using the username and password
             app.everlive.Users.login(username, password)
             .then(function () {
-                // EQATEC analytics monitor - track login type
-                if (isAnalytics) {
-                    analytics.TrackFeature('Login.Regular');
-                }
-
-                return app.Users.load();
+                return app.everlive.Users.currentUser();
+             })
+            .then(function(data){
+                app.currentUser.set('data', data.result);
             })
             .then(function () {
-
-                app.mobileApp.navigate('views/activitiesView.html');
+                app.mobileApp.navigate('views/welcome.html');
             })
             .then(null,
                   function (err) {
@@ -88,10 +85,7 @@ app.Login = (function () {
             if (!isFacebookLogin) {
                 return;
             }
-            if (isInMistSimulator) {
-                showMistAlert();
-                return;
-            }
+
             var facebookConfig = {
                 name: 'Facebook',
                 loginMethodName: 'loginWithFacebook',
@@ -135,10 +129,7 @@ app.Login = (function () {
             if (!isGoogleLogin) {
                 return;
             }
-            if (isInMistSimulator) {
-                showMistAlert();
-                return;
-            }
+
             var googleConfig = {
                 name: 'Google',
                 loginMethodName: 'loginWithGoogle',
@@ -182,10 +173,7 @@ app.Login = (function () {
             if (!isLiveIdLogin) {
                 return;
             }
-            if (isInMistSimulator) {
-                showMistAlert();
-                return;
-            }
+
             var liveIdConfig = {
                 name: 'LiveID',
                 loginMethodName: 'loginWithLiveID',
@@ -229,10 +217,7 @@ app.Login = (function () {
             if (!isAdfsLogin) {
                 return;
             }
-            if (isInMistSimulator) {
-                showMistAlert();
-                return;
-            }
+
             var adfsConfig = {
                 name: 'ADFS',
                 loginMethodName: 'loginWithADFS',
@@ -267,10 +252,6 @@ app.Login = (function () {
             });
         };
 
-        var showMistAlert = function () {
-            alert(appSettings.messages.mistSimulatorAlert);
-        };
-
         return {
             init: init,
             show: show,
@@ -279,11 +260,10 @@ app.Login = (function () {
             loginWithFacebook: loginWithFacebook,
             loginWithGoogle: loginWithGoogle,
             loginWithLiveID: loginWithLiveID,
-            loginWithADSF: loginWithADSF
+            loginWithADSF: loginWithADSF,
         };
 
     }());
 
     return loginViewModel;
-
 }());
