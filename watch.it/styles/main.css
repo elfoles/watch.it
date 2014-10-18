@@ -254,13 +254,14 @@
 }
 
 #friendsApp .app-logo {
-    width: 247px;
-    height: 32px;
-    background: transparent url(images/logo-telerik_devcloud.png) no-repeat 0 0;
+    width: 305px;
+    height: 64px;
+    background: transparent url(images/logo-watchit.png) no-repeat 0 0;
 }
 
 #friendsApp .app-name {
     margin-bottom: 1.5em;
+    display: none;
 }
 
 #friendsApp .app-name small {
