@@ -6,14 +6,28 @@
         </div>
     </div>
 
-    <select data-template="selectCategoryTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: categoryOptions"></select>
-    <select data-template="selectTransportationTemplate" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em" data-bind="source: transportationOptions"></select>
+    <select name="category" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em">
+        <option selected="selected" disabled="disabled">Category</option>
+        <option>Road Conditions</option>
+        <option>Road Signaling</option>
+        <option>Traffic</option>
+        <option>Buildings</option>
+        <option>Nature</option>
+    </select>
+    
+    <select name="transportation" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em">
+        <option selected="selected" disabled="disabled">Transportation</option>
+        <option>Pedestrian</option>
+        <option>Cyclist</option>
+        <option>Motor-Cyclist</option>
+        <option>Driver</option>
+    </select>
 
-    <input type="text" placeholder="Details" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em"/>
+    <input type="text" placeholder=" Details" style="width: 90%; height: 100%; margin:5%; padding-top:1%; padding-bottom: 1%; font-size: 2em"/>
 
     <div data-role="touch" data-bind="events: { tap: addPhoto }" >
         <a data-role="button" class="btn" style="display: block; width: 90%; text-align:center; margin:5%" data-icon="camera" id="add-photo">Add Photo and Report issue</a>
-    </div>
+    </div>        
    
 </div>
 

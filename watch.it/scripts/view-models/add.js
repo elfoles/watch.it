@@ -119,7 +119,7 @@ app.Add = (function () {
             }
         };
         
-        var categoryOptions = [{ id: 1, name: 'Asphalt' }, { id: 2, name: 'Buildings' }];
+        var categoryOptions = [{ id: 1, name: 'Road Cover' }, { id: 2, name: 'Buildings' }];
 
         var transportationOptions = [{ id: 0, name: 'Transportation' }, { id: 1, name: 'Pedestrian' }, { id: 2, name: 'Cyclist' }, { id: 3, name: 'Motor-Cyclist' }, { id: 4, name: 'Driver' }];
 
