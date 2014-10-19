@@ -109,7 +109,8 @@ app.Add = (function () {
                                 Category: category,
                                 Transportation: transportation,
                                 Details: details,
-                                Text: text
+                                Text: text,
+                                Fixed: "no"
                             });
                         };
     
