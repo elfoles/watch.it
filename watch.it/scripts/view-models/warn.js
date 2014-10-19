@@ -8,7 +8,10 @@ app.Warn = (function () {
     'use strict';
 
     var warnViewModel = (function () {
+<<<<<<< HEAD
                 
+=======
+>>>>>>> branch 'master' of https://github.com/elfoles/watch.it.git
         var show = function () {
             $('#user-greeting-warn').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
         };
@@ -64,15 +67,18 @@ app.Warn = (function () {
             }
         };
         
+        var loc = currentLocation();
+        
         var isLocationValidSite = function (photo) {
             var dist = 0.01;
             
             console.log(currentPosition.longitude);
 
-            console.log(currentLocation.longitude);
-            console.log(currentLocation.latitude);
+            console.log(currentLocation());
+            console.log(currentLocation().longitude);
+            console.log(currentLocation().latitude);
             
-            if (Math.abs(photo.Longitude-currentLocation.longitude)<dist && Math.abs(photo.Latitude - currentLocation.latitude)<dist) {
+            if (Math.abs(photo.Longitude-currentLocation().longitude)<dist && Math.abs(photo.Latitude - currentLocation().latitude)<dist) {
                 return true;
             } else {
                 return false;
