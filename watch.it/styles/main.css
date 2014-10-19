@@ -629,3 +629,9 @@
 #login-block{
     margin-top: 230px;
 }
+
+#add-view .km-content{
+     background-image: url('../Images/back-one.png');
+    background-size: 100% 100%;
+    background-repeat: no repeat;
+}
