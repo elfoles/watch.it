@@ -8,6 +8,7 @@ app.Warn = (function () {
     'use strict';
 
     var warnViewModel = (function () {
+        var loc= currentLocation;
                 
         var show = function () {
             $('#user-greeting-warn').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
@@ -43,6 +44,9 @@ app.Warn = (function () {
             function onSuccess(position) {
                 currentPosition.latitude = position.coords.latitude;
                 currentPosition.longitude = position.coords.longitude;
+                
+                console.log(currentPosition.longitude);
+                console.log(currentPosition.latitude);
 
                 return true;
             }
@@ -61,30 +65,17 @@ app.Warn = (function () {
             }
         };
         
-        var isLocationValidSite = function (location) {
+        var isLocationValidSite = function (photo) {
             var dist = 0.01;
-            var result;
 
-            var sites = app.everlive.data('Locations');
-            result = sites.get().then(function (data) {
-
-                for (var i = 0; i < data.result.length; i++) {
-                    if (Math.abs(data.result[i].Longitude-location.longitude)<dist && Math.abs(data.result[i].Latitude - location.latitude)<dist) {
-                        return true;
-                    }
-                }
-
-                return false;
-            });
-
-
-            if (result) {
+            console.log(currentLocation.longitude);
+            console.log(currentLocation.latitude);
+            
+            if (Math.abs(photo.Longitude-currentLocation.longitude)<dist && Math.abs(photo.Latitude - currentLocation.latitude)<dist) {
                 return true;
+            } else {
+                return false;
             }
-
-            navigator.notification.alert("This is not a site from \nthe 100 national tourist sites.\nThe photo will not be added.");
-            navigator.notification.vibrate(1000);
-            return false;
         };
         
         
@@ -99,10 +90,11 @@ app.Warn = (function () {
                     for (var i = 0; i < data.result.length; i++) {
                         var photo = data.result[i];
                         if(photo.Latitude != null && photo.Longitude != null && photo.Category != null && photo.Transportation != null) {
-                            
-                            issuesDataList.push(data.result[i]);
+                            if(isLocationValidSite(photo)){
+                                issuesDataList.push(data.result[i]);
+                            }
                         }
-                        console.log(photo);
+                        //console.log(photo);
                     }
                 },
                 function (error) {
