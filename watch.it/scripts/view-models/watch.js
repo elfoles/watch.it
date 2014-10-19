@@ -38,8 +38,11 @@ app.Watch = (function () {
             images.get()
                 .then(function (data) {
                     for (var i = 0; i < data.result.length; i++) {
-                        imagesDataList.push(data.result[i]);
-                        console.log(data.result[i]);
+                        var photo = data.result[i];
+                        if(photo.Latitude != null && photo.Longitude != null && photo.Category != null && photo.Transportation != null) {
+                            imagesDataList.push(data.result[i]);
+                        }
+                        console.log(photo);
                     }
                 },
                 function (error) {

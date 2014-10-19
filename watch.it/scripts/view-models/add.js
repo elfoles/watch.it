@@ -87,34 +87,45 @@ app.Add = (function () {
 
         var addPhoto = function() {
             if (app.isConnected()) {
-                var text = /*app.currentUser.data.DisplayName +*/ " visited " + "Cherni vruh";
-
-                var location = currentLocation();
-
-                if (isLocationValidSite(location)) {
-                    var success = function(data) {
-                        app.everlive.Files.create({
-                            Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
-                            ContentType: "image/jpeg",
-                            base64: data,
-                            Longitude: location.longitude,
-                            Latitude: location.latitude,
-                            Text: text
-                        });
-                    };
-
-                    var error = function() {
-                        app.showAlert("Unfortunately we could not add the image");
-                    };
-
-                    var config = {
-                        destinationType: Camera.DestinationType.DATA_URL,
-                        targetHeight: 400,
-                        targetWidth: 400
-                    };
-
-                    //navigator.camera.Direction(0);
-                    navigator.camera.getPicture(success, error, config);
+                var categoryElement = document.getElementById('category');
+                var category = categoryElement.options[categoryElement.selectedIndex].text.toString();
+                var transportationElement = document.getElementById('transportation');
+                var transportation = transportationElement.options[transportationElement.selectedIndex].text.toString();
+                var details = document.getElementById('details').value;
+                var text = category + ' / ' + transportation + ' / ' + details;
+                if (category === 'Category' || transportation === 'Transportation') {
+                        navigator.notification.alert("Valid category and transportation should be selected.");
+                } else {                    
+                    var location = currentLocation();
+    
+                    if (isLocationValidSite(location)) {
+                        var success = function(data) {
+                            app.everlive.Files.create({
+                                Filename: Math.random().toString(36).substring(2, 15) + ".jpg",
+                                ContentType: "image/jpeg",
+                                base64: data,
+                                Longitude: location.longitude,
+                                Latitude: location.latitude,
+                                Category: category,
+                                Transportation: transportation,
+                                Details: details,
+                                Text: text
+                            });
+                        };
+    
+                        var error = function() {
+                            app.showAlert("Unfortunately we could not add the image");
+                        };
+    
+                        var config = {
+                            destinationType: Camera.DestinationType.DATA_URL,
+                            targetHeight: 400,
+                            targetWidth: 400
+                        };
+    
+                        //navigator.camera.Direction(0);
+                        navigator.camera.getPicture(success, error, config);
+                    }
                 }
             }
         };
