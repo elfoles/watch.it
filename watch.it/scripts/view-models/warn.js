@@ -8,10 +8,6 @@ app.Warn = (function () {
     'use strict';
 
     var warnViewModel = (function () {
-<<<<<<< HEAD
-                
-=======
->>>>>>> branch 'master' of https://github.com/elfoles/watch.it.git
         var show = function () {
             $('#user-greeting-warn').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
         };
@@ -71,8 +67,6 @@ app.Warn = (function () {
         
         var isLocationValidSite = function (photo) {
             var dist = 0.01;
-            
-            console.log(currentPosition.longitude);
 
             console.log(currentLocation());
             console.log(currentLocation().longitude);
