@@ -1,10 +1,12 @@
 <div data-role="view" data-title="Warn" data-layout="main-layout" data-id="warn" data-model="app.Warn" data-show="app.Warn.show">
     <div data-role="header">
         <div data-role="navbar">
-            <div id="logout-warn" data-role="touch" data-bind="events: { tap: logout }">
-                <a data-role="button" class="btn btn-profile" data-icon="settings"></a>
-                <h3 style="display:inline-block" class="center-block" id="user-greeting-warn"></h3>     
-                <a data-role="button" class="btn btn-logout" data-icon="action"></a>
+            <div >
+                <a data-role="button" class="btn btn-profile" data-icon="settings" style="width: 60px; float: left; background: none"></a>
+            </div>
+                <h3 style="display:inline-block" class="center-block" id="user-greeting-warn"></h3>  
+            <div id="logout" data-role="touch" data-bind="events: { tap: logout }" style="display: inline-block; float: right">
+                <a data-role="button" class="btn btn-logout" data-icon="action" style="width: 60px; background: none"></a>
             </div>
         </div>
     </div>  
