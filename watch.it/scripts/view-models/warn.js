@@ -8,7 +8,6 @@ app.Warn = (function () {
     'use strict';
 
     var warnViewModel = (function () {
-        var loc= currentLocation;
                 
         var show = function () {
             $('#user-greeting-warn').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
@@ -67,6 +66,8 @@ app.Warn = (function () {
         
         var isLocationValidSite = function (photo) {
             var dist = 0.01;
+            
+            console.log(currentPosition.longitude);
 
             console.log(currentLocation.longitude);
             console.log(currentLocation.latitude);
