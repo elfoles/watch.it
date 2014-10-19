@@ -1,7 +1,7 @@
 <div data-role="view" data-title="Watch" data-layout="main-layout" data-model="app.Watch" data-show="app.Watch.show">
     <div data-role="header">
         <div data-role="navbar">
-            <div >
+            <div  id="settings-watch" data-role="touch" data-bind="events: { tap: settings }">
                 <a data-role="button" class="btn btn-profile" data-icon="settings" style="width: 60px; float: left; background: none"></a>
             </div>
                 <h3 style="display:inline-block" class="center-block" id="user-greeting-watch"></h3>  

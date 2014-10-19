@@ -12,6 +12,10 @@ app.Watch = (function () {
         var show = function () {
             $('#user-greeting-watch').text('Welcome, ' + app.currentUser.data.DisplayName + '!');
         };
+        
+        var settings= function(){
+            navigator.notification.alert("Username: " + app.currentUser.data.DisplayName + "\nPhone number: " + app.currentUser.PhoneNumber + "\nEmail: " + app.currentUser.data.Email);
+        };
 
         var logout = function () {
             navigator.notification.confirm('Do you really want to exit?', function (confirmed) {
@@ -82,7 +86,8 @@ app.Watch = (function () {
             show: show,
             logout: logout,
             selectionImagesList: selectionImagesList,
-            imagesDataList: imagesDataList
+            imagesDataList: imagesDataList,
+            settings: settings
         };
 
     }());
