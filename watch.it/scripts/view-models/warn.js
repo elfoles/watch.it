@@ -69,7 +69,7 @@ app.Warn = (function () {
             result = sites.get().then(function (data) {
 
                 for (var i = 0; i < data.result.length; i++) {
-                    if (Math.abs(data.result[i].Location.longitude-location.longitude)<dist && Math.abs(data.result[i].Location.latitude - location.latitude)<dist) {
+                    if (Math.abs(data.result[i].Longitude-location.longitude)<dist && Math.abs(data.result[i].Latitude - location.latitude)<dist) {
                         return true;
                     }
                 }
@@ -89,10 +89,62 @@ app.Warn = (function () {
         
         
 
+        var issuesDataList = [];
+
+        var issuesData = (function () {
+            var images = app.everlive.Files;
+
+            images.get()
+                .then(function (data) {
+                    for (var i = 0; i < data.result.length; i++) {
+                        var photo = data.result[i];
+                        if(photo.Latitude != null && photo.Longitude != null && photo.Category != null && photo.Transportation != null) {
+                            
+                            issuesDataList.push(data.result[i]);
+                        }
+                        console.log(photo);
+                    }
+                },
+                function (error) {
+                    console.log(JSON.stringify(error));
+                });
+        }());
+        
+        var selectionIssuesList = function (event) {
+            var selectedValue = parseInt(event.target.value),
+                template = kendo.template($("#issuesTemplate").html()),
+                filteredData = [];
+            
+        
+
+            switch(selectedValue) {
+                case 1:
+                    filteredData = issuesDataList.filter(function (element) {
+                        return element;
+                    });
+                    break;
+                case 2:
+                    filteredData = issuesDataList.filter(function (element) {
+                        return element.Owner === app.currentUser.data.Id;
+                    });
+                    break;
+                default:
+                    filteredData = issuesDataList.filter(function (element) {
+                        return element;
+                    });
+                    break;
+
+            }
+
+            $("#issuesList").html(kendo.render(template, filteredData));        }
+
         return {
             show: show,
-            logout: logout
+            logout: logout,
+            selectionIssuesList: selectionIssuesList,
+            issuesDataList: issuesDataList
         };
+
 
     }());
 

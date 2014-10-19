@@ -5,5 +5,13 @@
             <a data-role="button" class="btn btn-logout">Logout</a>
         </div>
     </div>  
+    <div>
+        <ul data-template="issuesTemplate" data-role="listview" data-bind="source: issuesDataList" id="issuesList"></ul>
+    </div>
 </div>
+
+<script type="text/x-kendo-template" id="issuesTemplate">
+        <img src='#: Uri #' style='width:100%' />
+        <span style="color: black">#: Text #</span>
+</script>
 
