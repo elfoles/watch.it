@@ -39,6 +39,7 @@ app.Watch = (function () {
                 .then(function (data) {
                     for (var i = 0; i < data.result.length; i++) {
                         imagesDataList.push(data.result[i]);
+                        console.log(data.result[i]);
                     }
                 },
                 function (error) {
@@ -46,14 +47,12 @@ app.Watch = (function () {
                 });
         }());
         
-        var init = function () {
-
-        };
-
         var selectionImagesList = function (event) {
             var selectedValue = parseInt(event.target.value),
                 template = kendo.template($("#imagesTemplate").html()),
                 filteredData = [];
+            
+        
 
             switch(selectedValue) {
                 case 1:

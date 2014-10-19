@@ -77,7 +77,7 @@ var app = (function (win) {
         win.addEventListener('error', function (e) {
             e.preventDefault();
 
-            var message = e.message + "' from " + e.filename + ":" + e.lineno;
+            var message = e.message + " from " + e.filename + ":" + e.lineno;
 
             showAlert(message, 'Error occured');
 
@@ -101,7 +101,7 @@ var app = (function (win) {
         };
 
         //set all available sites to local storage
-        setSitesToLocalStorage();
+        //setSitesToLocalStorage();
 
         // Handle "backbutton" event
         document.addEventListener('backbutton', onBackKeyDown, false);
