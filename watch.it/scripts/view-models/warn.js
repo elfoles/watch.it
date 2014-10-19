@@ -30,6 +30,64 @@ app.Warn = (function () {
         };
         
         
+        var currentLocation = function() {
+            var options = {
+                    enableHighAccuracy: true
+                },
+                currentPosition = {};
+
+
+            var locator = navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+
+            // onSuccess Geolocation
+            function onSuccess(position) {
+                currentPosition.latitude = position.coords.latitude;
+                currentPosition.longitude = position.coords.longitude;
+
+                return true;
+            }
+
+            // onError Callback receives a PositionError object
+            function onError(error) {
+                alert('code: ' + error.code + '\n' +
+                    'message: ' + error.message + '\n');
+                return false;
+            }
+
+            if (locator) {
+                return currentPosition;
+            } else {
+                return false;
+            }
+        };
+        
+        var isLocationValidSite = function (location) {
+            var dist = 0.01;
+            var result;
+
+            var sites = app.everlive.data('Locations');
+            result = sites.get().then(function (data) {
+
+                for (var i = 0; i < data.result.length; i++) {
+                    if (Math.abs(data.result[i].Location.longitude-location.longitude)<dist && Math.abs(data.result[i].Location.latitude - location.latitude)<dist) {
+                        return true;
+                    }
+                }
+
+                return false;
+            });
+
+
+            if (result) {
+                return true;
+            }
+
+            navigator.notification.alert("This is not a site from \nthe 100 national tourist sites.\nThe photo will not be added.");
+            navigator.notification.vibrate(1000);
+            return false;
+        };
+        
+        
 
         return {
             show: show,
