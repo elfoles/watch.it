@@ -1,3 +1,7 @@
+
+
+
+
 .cf {
     zoom: 1;
 }
@@ -254,9 +258,9 @@
 }
 
 #friendsApp .app-logo {
-    width: 305px;
-    height: 64px;
-    background: transparent url(images/logo-watchit.png) no-repeat 0 0;
+   //width: 305px;
+   // height: 64px;
+   // background: transparent url(images/logo-watchit.png) no-repeat 0 0;
 }
 
 #friendsApp .app-name {
@@ -614,4 +618,14 @@
         background-image: url(images/icon-add@2x.png);
         background-size: 23px 23px;
     }
+}
+
+#login-view .km-content{
+    background-image: url('../Images/back.png');
+    background-size: 100% 90%;
+    background-repeat: no repeat;
+}
+
+#login-block{
+    margin-top: 230px;
 }
